@@ -1,45 +1,56 @@
-var items = new Array();
-var n = 0;
+var items = new Array();			//the array of item objects
+var n = 0;							//a counter of the number of objects
 
-$(document).ready(function(){								
-	$("#add").click(function(){
-		var addedItem = new ItemClass(document.getElementById('addItem').value, n);
-		items.push(addedItem);
-		addedItem.display();
+$(document).ready(function(){	
+
+	/*when add is clicked, a test is done to see if the user entered only whitespace. If they did, the user is notified 
+	and the function stops. If not, a new object is created, displayed, and added to the array of objects*/
+							
+	$("#add").click(function(){										
+		$('.warning').remove();										
+		var testString = document.getElementById('addItem').value;	//this tests to see if the user entered only whitespace
+			if (testString.trim() == '' ) {
+			$('#container').append("<div class='warning'>You didn't type in anything!</div>");
+			return;
+			}
+					
+		var addedItem = new ItemClass(document.getElementById('addItem').value, n); //new object created
+		items.push(addedItem);										//added to array of objects
+		addedItem.display();										//objects display function is called
 		$('#addItem').val("");    									//empties the input field
 		document.getElementById('addItem').focus();					//sets focus back to input field
 	});	
 	
-	$("#remove").click(function(){
+	
+	/*when remove is clicked, an array of checkboxes is made, and cycled through. If the id of any checkbox matches the
+	corresponding object, then the remove function is called on that object and the object is removed from the array*/
+	
+	$("#remove").click(function(){										
 		var boxes = $(":checkbox:checked");
-		for (x = 0; x < boxes.length; x++) {
-			var store = document.getElementById(boxes[x].id);
-			var storeID = store.id;
-			var checkIDNew = storeID;
+		for (x = 0; x < boxes.length; x++) {					//loop through array of checkboxes
+			var store = document.getElementById(boxes[x].id); 	//get the checkbox
+			var checkIDNew = store.id;							//store id of checkbox
 			console.log("checkIDNew = " + checkIDNew);
-				$.each(items, function(i){
-					if(items[i].num == checkIDNew) {
-						items[i].remove();
-						items.splice(i,1);
+				$.each(items, function(i){						
+					if(items[i].num == checkIDNew) {			//see if items unique identifier matches checkbox id
+						items[i].remove();						//call item's remove function
+						items.splice(i,1);						//remove it from array
 						return false;
 						}
-					});
-
+				});
 		}	
-
 	});
 	
+	/*This function styles any item checked off with 'line-through' css  */
+	
 	$("#container").on('click', ':checkbox', function(){
-		console.log("you clicked on a checkbox");
-			if ($(this).is(':checked')) {
+			if ($(this).is(':checked')) {    
 				var checkID = document.getElementById(this.id);
-				console.log("got the id of the checked box and it is: " + checkID.id);
 				$("#" + checkID.id +'').css('textDecoration', 'line-through');
 			}
 			else {
 				var checkID = document.getElementById(this.id);
-				console.log("got the id of the unchecked box and it is: " + checkID.id);
-				$("#" + checkID.id +'').css('textDecoration', 'none');
+				$("#" + checkID.id +'').css('textDecoration', 'none');	//when unchecked style returns to normal
 			}
 	});
 		
@@ -54,39 +65,43 @@ $(document).keypress(function(event){
 		}
 });
 	
+	/*Item class is a 'class' (using the term loosely) with the functions display() and remove(). It's properties are 
+	name, and num (unique identifier). Each object in the items array is a member of this class*/
 	
 function ItemClass (name, num) {
 
-	this.name = name;
-	
-	if (hasWhiteSpace(this.name)) {	
-		var newName = this.name.split(" ");
-		this.name = newName[0];
+	this.name = name; 								//name is for displaying to the page, it's exactly what the user
+													//types in.
+	if (hasWhiteSpace(this.name)) {					
+		var newName = this.name.split(" ");			//this if statement takes the first word if there's more than one
+		this.name = newName[0];						//and assigns it to name
 	} 
 	
-	this.num = (this.name + num + '');
+	this.num = (this.name + num + '');				//num is the unique id of each object which corresponds to the checkboxes id
 	
 	console.log("name of object is " + this.name);
 	console.log("num is " + this.num);
 
-	this.display=display;
+	this.display=display;						//display method displays the name, but not the shortened name if it had whitespace
 	function display() {
 		$('#container').append('<div class="item" id = ' + this.num +'>' + name + '</div>' +
 		'<div class="checkbox"><input type="checkbox" name=' + name + ' id=' + this.num +' value="0">' + '</div>');
 		n++;
-			if (num > 9) {
-			n = 0;
+			if (n > 9) {			//this counter resets if it goes over ten, otherwise the id's 
+			n = 0;					//of objects and checkboxes would overlap eventually
 			}
 	}
 
-	this.remove=remove;
-	function remove(){
+	this.remove=remove;				//remove() removes the div and the checkbox with the objects unique identifier
+	function remove(){				//and deletes the object
 		$("#" + this.num +'').remove();
 		$("input:checkbox[id='" + this.num + "']").remove();
 		delete(this);
 	}
 	
 }
+
+//function for determining if name had whitespace
 
 function hasWhiteSpace(s) {
 	return s.indexOf(' ') >= 0;

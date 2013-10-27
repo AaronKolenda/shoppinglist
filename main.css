@@ -70,6 +70,7 @@ table {
 	overflow: none;
 	background-color:#ffffff;
 	margin-top:50px;
+	border-radius: 14px;
 }
 
 
@@ -83,6 +84,7 @@ h1 {
 	text-align: center;
 	font-family: Verdana, sans-serif;
 	text-shadow: 3px 3px #FFFACD;
+	padding-top: 30px;
 }
 
 input {
@@ -98,6 +100,7 @@ input {
 	text-align:left;
 	margin-left: auto;
 	margin-right: auto;
+	border-radius: 5px;
 }
 
 
@@ -181,7 +184,7 @@ button:active {
 	padding:15px 10px 10px 10px;
 	margin-left:auto;
 	margin-right:auto;
-	margin-bottom:50px;
+	margin-bottom:0px;
 	text-align: center;
 	background: linear-gradient(to bottom, #fff, #FFEC8B);
 	border-radius: 5px;
@@ -199,7 +202,7 @@ padding-bottom: 50px;
 .checkbox input[type=checkbox] {
     position: relative;
 	left:100px;
-	bottom:75px;
+	bottom:25px;
 	margin:auto;
 }
 
