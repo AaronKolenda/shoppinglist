@@ -1,0 +1,206 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+   This is the CSS reset.
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	background-color: fff;
+	font-family: Arial,sans-serif;
+	font-size: 0.8em;
+	font-weight: bold;
+	height: 100%;
+}
+
+html {
+	height: 100%;
+	}
+	
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* CSS reset is above. My CSS starts here */
+  
+#container { 			/* A container element centers the page */ 
+	position: relative;
+	text-align: center;
+	margin: auto;
+	width: 90%;
+	min-width: 800px;
+	overflow: none;
+	background-color:#ffffff;
+	margin-top:50px;
+}
+
+
+body {
+background-color: #BDB76B;
+}
+
+h1 {
+	color: #451502;
+	font-size: 25px;
+	text-align: center;
+	font-family: Verdana, sans-serif;
+	text-shadow: 3px 3px #FFFACD;
+}
+
+input {
+	width: 550px;
+	height: 25px;
+	font-family: Arial, sans serif;
+	font-size: 22px;
+	}
+	
+	
+#container > input{
+	margin-top: 50px;
+	text-align:left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+p {
+	text-shadow: 2px 2px #FFFACD;
+	font-size: 15px;
+	font-family: Verdana, sans-serif;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.displayButtons {				/* Buttons in there own div to display them on their own line*/
+	display:block;
+}
+
+button {
+	/*background-color: #FFFACD;
+	color: #8B2323;
+	text-shadow: 2px 2px #FFF68F;
+	font-size: 15px;
+	font-family: Verdana, sans-serif;
+	border-radius: 9px;*/
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+	
+	-moz-box-shadow:inset 0px 0px 0px 0px #e6d991;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #e6d991;
+	box-shadow:inset 0px 0px 0px 0px #e6d991;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dce38b), color-stop(1, #ebb859) );
+	background:-moz-linear-gradient( center top, #dce38b 5%, #ebb859 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dce38b', endColorstr='#ebb859');
+	background-color:#dce38b;
+	-webkit-border-top-left-radius:14px;
+	-moz-border-radius-topleft:14px;
+	border-top-left-radius:14px;
+	-webkit-border-top-right-radius:14px;
+	-moz-border-radius-topright:14px;
+	border-top-right-radius:14px;
+	-webkit-border-bottom-right-radius:14px;
+	-moz-border-radius-bottomright:14px;
+	border-bottom-right-radius:14px;
+	-webkit-border-bottom-left-radius:14px;
+	-moz-border-radius-bottomleft:14px;
+	border-bottom-left-radius:14px;
+	text-indent:0px;
+	border:1px solid #9e3925;
+	display:inline-block;
+	color:#702213;
+	font-family:Verdana;
+	font-size:13px;
+	font-weight:normal;
+	font-style:normal;
+	height:40px;
+	line-height:20px;
+	width:70px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 0px 0px #c7bc71;
+}
+
+button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ebb859), color-stop(1, #dce38b) );
+	background:-moz-linear-gradient( center top, #ebb859 5%, #dce38b 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ebb859', endColorstr='#dce38b');
+	background-color:#ebb859;
+}
+
+button:active {
+	position:relative;
+	top:1px;
+
+}
+
+.item {
+	color: #451502;
+	display: inline-block;
+	position: relative;
+	right:15px;
+	padding:15px 10px 10px 10px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:50px;
+	text-align: center;
+	background: linear-gradient(to bottom, #fff, #FFEC8B);
+	border-radius: 5px;
+	font-size: 0.9em;
+	border: 1px solid #FFEC8B;
+	box-shadow: rgb(239, 239, 239) 0;
+	overflow: none;
+}
+
+.warning {
+color: red;
+padding-bottom: 50px;
+}
+
+.checkbox input[type=checkbox] {
+    position: relative;
+	left:100px;
+	bottom:75px;
+	margin:auto;
+}
+
+/*input[type=checkbox] v*/
