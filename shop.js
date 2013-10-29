@@ -6,14 +6,11 @@ $(document).ready(function(){
 	/*when add is clicked, a test is done to see if the user entered only whitespace. If they did, the user is notified 
 	and the function stops. If not, a new object is created, displayed, and added to the array of objects*/
 							
-	$("#add").click(function(){										
-		$('.warning').remove();										
-		var testString = document.getElementById('addItem').value;	//this tests to see if the user entered only whitespace
-			if (testString.trim() == '' ) {
-			$('#container').append("<div class='warning'>You didn't type in anything!</div>");
-			return;
-			}
-					
+	$("#add").click(function(){	
+		if (testWhiteSpace(document.getElementById('addItem').value)) {
+		return;
+		}
+		
 		var addedItem = new ItemClass(document.getElementById('addItem').value, n); //new object created
 		items.push(addedItem);										//added to array of objects
 		addedItem.display();										//objects display function is called
@@ -70,26 +67,19 @@ $(document).keypress(function(event){
 	
 function ItemClass (name, num) {
 
-	this.name = name; 								//name is for displaying to the page, it's exactly what the user
-													//types in.
-	if (hasWhiteSpace(this.name)) {					
-		var newName = this.name.split(" ");			//this if statement takes the first word if there's more than one
-		this.name = newName[0];						//and assigns it to name
-	} 
-	
-	this.num = (this.name + num + '');				//num is the unique id of each object which corresponds to the checkboxes id
+	this.name = (name + ''); 								//name is for displaying to the page, it's exactly what the user
+															//types in.
+	this.num = n;											//num is the unique id of each object which 
+															//corresponds to the checkboxes id
 	
 	console.log("name of object is " + this.name);
 	console.log("num is " + this.num);
 
 	this.display=display;						//display method displays the name, but not the shortened name if it had whitespace
 	function display() {
-		$('#container').append('<div class="item" id = ' + this.num +'>' + name + '</div>' +
-		'<div class="checkbox"><input type="checkbox" name=' + name + ' id=' + this.num +' value="0">' + '</div>');
+		$('#container').append('<div class="item" id = ' + this.num +'>' + this.name + '</div>' +
+		'<div class="checkbox"><input type="checkbox" id=' + this.num +' >' + '</div>');
 		n++;
-			if (n > 9) {			//this counter resets if it goes over ten, otherwise the id's 
-			n = 0;					//of objects and checkboxes would overlap eventually
-			}
 	}
 
 	this.remove=remove;				//remove() removes the div and the checkbox with the objects unique identifier
@@ -103,6 +93,16 @@ function ItemClass (name, num) {
 
 //function for determining if name had whitespace
 
-function hasWhiteSpace(s) {
-	return s.indexOf(' ') >= 0;
+function hasWhiteSpace(st) {
+	return st.indexOf(' ') >= 0;
 	}
+	
+//function for handling the error of only whitespace being typed in
+	
+function testWhiteSpace(s) {
+	$('.warning').remove();	
+		if (s.trim() == '' ) {
+		$('#container').append("<div class='warning'>You didn't type in anything!</div>");
+		return true;
+		}
+}
